@@ -29,18 +29,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-if (!process.env.SECURE_DEPLOY){
-    process.env.JWT_SECRET = 'bo4lhaw98yp7b90v7bvvsdw364cqowpqw97tqw0w8o3ekrgarhjiehrrb7q8bernqcawbehd863r2603rbawey7ryahwipt7iue07ryw308uywecr709w734rvou97384uyghtiljf90b8ksdqway';
-    process.env.PORT = '8081';
-    process.env.AWS_ACCESS_KEY_ID = 'AKIAVZESEIJ6HXJTONM4';
-    process.env.AWS_SECRET_ACCESS_KEY = 'SxkBbgzyFAWlPcIaJUpPL9huVSZ6ATgjMDsegIN5';
-    process.env.AWS_DYNAMO_REGION = 'eu-central-1';
-    process.env.AWS_DYNAMO_DATABASE = 'dev-mk713-example';
-
-    process.env.AWS_SES_REGION = 'eu-central-1';
-    process.env.AWS_SES_SENDER = 'MK713 API Example - Development <noreply@mk13.studio>';
-}
-
 provider.initialize(new DynamoDatabaseProvider(process.env.AWS_DYNAMO_DATABASE, process.env.AWS_DYNAMO_REGION));
 email.initialize(new SESEmailProvider(process.env.AWS_SES_SENDER, process.env.AWS_SES_REGION));
 
