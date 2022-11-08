@@ -17,7 +17,7 @@ export namespace libraryRepository {
                 console.error(err.message);
             }
         });
-        repository.check(new BookModel(), (err) => {
+        repository.checkIndexed(new BookModel(), (err) => {
             if (err) {
                 console.error(err.message);
             }
