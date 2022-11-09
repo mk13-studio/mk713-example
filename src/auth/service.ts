@@ -73,8 +73,10 @@ function registerLogin(display: string, email: string, password: string, admin: 
 }
 
 function searchLogin(login_name: string, includeNotConfirmed: boolean, callback: (found: boolean, login?: LoginModel) => void) {
-    authRepository.getFilteredLogins(login_name, undefined, false, undefined, (data) => {
-        if (data && data.length === 1) {
+    authRepository.getFilteredLogins(login_name, undefined, false, undefined, (data, error) => {
+        if (error) {
+            callback(false);
+        } else if (data && data.length === 1) {
             const login = data[0];
             if (login.confirmed || includeNotConfirmed) {
                 callback(true, new LoginModel().fromLoginModel(login));
