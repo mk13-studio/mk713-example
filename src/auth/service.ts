@@ -94,8 +94,9 @@ function generateAuthenticationTokens(login: LoginModel, callback: (tokens: { to
     if (login.refreshToken){
         token = login.refreshToken;        
     }
-    const refresh = security.generateSpecificToken({ loginId: login.id, token: token }, '30d');
-    const jwt = security.generateSpecificToken({ loginId: login.id, accountId: login.accountId, admin: login.admin, editor: login.editor }, '1d');
+    
+    const refresh = security.generateSpecificToken(security.getRefreshTokenPayload(login.id, token), '30d');
+    const jwt = security.generateSpecificToken(security.getRegularTokenPayload(login.id, login.accountId, login.admin, login.editor), '1d');
 
     if (login.refreshToken != token) {
         login.refreshToken = token;
