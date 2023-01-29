@@ -7,13 +7,25 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Start Debugging",
+            "name": "Start Debugging Callbacks",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/dist/index.js",
+            "program": "${workspaceFolder}/package/callback/dist/index.js",
             "outFiles": [
-                "${workspaceFolder}/dist/**/*.js"
+                "${workspaceFolder}/package/callback/dist/**/*.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Start Debugging Promises",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/package/promise/dist/index.js",
+            "outFiles": [
+                "${workspaceFolder}/package/promise/dist/**/*.js"
             ]
         }
     ]

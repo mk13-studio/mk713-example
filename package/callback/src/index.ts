@@ -50,6 +50,7 @@ router.get(appRoute.getV1Url(appRoute.getMap().general.status), (request, respon
             'database': process.env.AWS_DYNAMO_DATABASE,
             'deploy': process.env.SECURE_DEPLOY,
             'port': process.env.PORT,
+            'package': process.env.npm_package_version,
         });
     } else {
         response.json({
@@ -57,6 +58,7 @@ router.get(appRoute.getV1Url(appRoute.getMap().general.status), (request, respon
             'database': process.env.AWS_DYNAMO_DATABASE,
             'deploy': 'local',
             'port': process.env.PORT,
+            'package': process.env.npm_package_version,
         });
     }
 
@@ -71,5 +73,6 @@ app.use(function (req, res) {
 const port = +process.env.PORT;
 
 app.listen(port, () => {
-    console.log(`MK713 Example API started on port ${port}`);
+    console.log(`MK713 Example API (version: ${process.env.npm_package_version}) started on port ${port}`);
 });
+
